@@ -231,6 +231,8 @@ def set_engine(scene, a):
         scene.render.engine = "CYCLES"
         scene.cycles.samples = samples
         scene.cycles.use_denoising = False
+        scene.cycles.use_denoising = False
+        scene.view_layers[0].cycles.use_denoising = False
     else:
         for name in ("BLENDER_EEVEE_NEXT", "BLENDER_EEVEE"):
             try:
