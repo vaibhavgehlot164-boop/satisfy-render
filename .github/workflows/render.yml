@@ -18,8 +18,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Blender + ffmpeg
-        run: sudo apt-get update && sudo apt-get install -y blender ffmpeg
+      - name: Install Blender and ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libxi6 libxxf86vm1 libxfixes3 libxrender1 libgl1 libegl1 libsm6 libxkbcommon0
+          wget -q https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz
+          tar -xf blender-4.2.3-linux-x64.tar.xz
+          echo "$PWD/blender-4.2.3-linux-x64" >> $GITHUB_PATH
       - name: Render
         env:
           MODEL: ${{ inputs.model }}
